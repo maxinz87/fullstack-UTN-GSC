@@ -1,8 +1,9 @@
 class PilaLIFO<T>{
 
-   public pila:Array<T> = [];
+   protected pila = new Array<T>;
    
    constructor(){
+      this.pila = [];
    } 
 
    public agregar(elemento: T): void{
@@ -26,7 +27,7 @@ class PilaLIFO<T>{
 class PilaLIFO_Unicos<T> extends PilaLIFO<T>{
 
    public agregar(elemento: T): void {
-      if(!super.pila.includes(elemento))
+      if(!this.pila.includes(elemento))
          super.agregar(elemento);
    }
 

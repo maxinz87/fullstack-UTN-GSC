@@ -1,0 +1,6 @@
+<div style="width: 360px; float: left;" [ngStyle]=" {'width': anchoDiv}">
+    <div *ngFor="let arreglo of estadoCeldas; let fila = index">
+        <app-celda (cambioContenidoCelda)="rellenoCelda($event)" [valorCelda]="estadoCeldas[fila][celda]" [fila]="fila" [celda]="celda" [juegoTerminado]="juegoTerminado" *ngFor="let casillero of arreglo; let celda = index" class="celda" ></app-celda>
+    </div>
+    <h6>{{infoHijoPadre}}</h6>
+</div>

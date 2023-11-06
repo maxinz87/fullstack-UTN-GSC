@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var PilaLIFO = /** @class */ (function () {
     function PilaLIFO() {
+        this.pila = new Array;
         this.pila = [];
     }
     PilaLIFO.prototype.agregar = function (elemento) {
@@ -38,7 +39,7 @@ var PilaLIFO_Unicos = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     PilaLIFO_Unicos.prototype.agregar = function (elemento) {
-        if (!_super.prototype.pila.includes(elemento))
+        if (!this.pila.includes(elemento))
             _super.prototype.agregar.call(this, elemento);
     };
     return PilaLIFO_Unicos;
