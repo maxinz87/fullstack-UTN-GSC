@@ -1,0 +1,105 @@
+<div style="text-align: center;">
+
+    <h2>Formulario de suscripción a Revista</h2>
+
+    <form [formGroup]="suscripcionForm" (ngSubmit)="enviarDatos()">
+        <div class="contenedorSuscripcion">
+            
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos">Nombre: <input class="inputEstilos" formControlName="nombre"></label>
+                <br>
+                <span   class="validacionSpan" 
+                        *ngIf="suscripcionForm.controls.nombre.invalid && suscripcionForm.controls.nombre.touched">
+                        El nombre es obligatorio
+                </span>
+            </div>
+
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos" >Apellido: <input class="inputEstilos" formControlName="apellido"></label>
+                <br>
+                <span   class="validacionSpan" 
+                        *ngIf="suscripcionForm.controls.apellido.invalid && suscripcionForm.controls.apellido.touched">
+                        El apellido es obligatorio
+                </span>
+            </div>
+
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos">E-mail: <input class="inputEstilos" formControlName="email"></label>
+                <br>
+                <span   class="validacionSpan" 
+                        *ngIf="suscripcionForm.controls.email.invalid && suscripcionForm.controls.email.touched">
+                        El email debe ser válido
+                </span>
+            </div>
+
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos">repita E-mail: <input class="inputEstilos" formControlName="emailCheck"></label>
+                <br>
+                <span   class="validacionSpan"
+                        *ngIf="verificacionEmails">
+                        La dirección de email no coincide
+                </span>
+            </div>
+
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos">Teléfono: <input class="inputEstilos" formControlName="telefono"></label>
+                <br>
+                <span class="validacionSpan" 
+                        *ngIf="suscripcionForm.controls.telefono.invalid && suscripcionForm.controls.telefono.touched">
+                        El télefono debe ser un número válido
+                </span>
+            </div>
+
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos">Contraseña: <input class="inputEstilos" formControlName="pass"></label>
+                <br>
+                <span class="validacionSpan" 
+                        *ngIf="suscripcionForm.controls.pass.invalid && suscripcionForm.controls.pass.touched">
+                        La contraseña debe ser mayor a 8 caracteres
+                </span>
+            </div>
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos" style="font-size: 14px;">Recibir notificaciones <input type="checkbox" class="inputEstilos" formControlName="notificacionesOp"></label>
+            </div>
+
+            <div class="contenedorControl">
+                <label class="etiquetaEstilos" style="font-size: 14px;">Acepta los términos y condiciones <input type="checkbox" class="inputEstilos" formControlName="terminosYcondiciones"></label>
+                <br>
+                <span   class="validacionSpan" 
+                        *ngIf="suscripcionForm.controls.terminosYcondiciones.invalid && suscripcionForm.controls.terminosYcondiciones.touched">
+                        Debe aceptar los términos y condiciones
+                </span>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit">Enviar </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="contenedorEliminarSuscripcion">
+    <div>
+        <h4>Buscar Suscriptor por ID</h4>
+        <form #buscarSuscriptorForm="ngForm">
+            <label style="margin-right: 10px;" for="">Ingrese ID suscriptor</label><input style="margin-right: 10px; width: 30px;" class="inputEstilos" type="text" name="id" [(ngModel)]="inputIDBuscar">
+            <button (click)="buscarSuscriptor(inputIDBuscar)">Buscar suscriptor</button>
+        </form>
+    </div>
+    <hr>
+    <div>
+        <h4>Eliminar Suscriptor por ID</h4>
+        <form #eliminarSuscriptorForm="ngForm">
+            <label style="margin-right: 10px;" for="">Ingrese ID suscriptor a borrar</label><input style="margin-right: 10px; width: 30px;" class="inputEstilos" type="text" name="id" [(ngModel)]="inputIDEliminar">
+            <button (click)="eliminarSuscriptor(inputIDEliminar)">Eliminar suscriptor</button>
+        </form>
+    </div>
+    <hr>
+    <button style="margin-top:20px;" (click)="buscarSuscriptores()">Ver suscripciones!</button>
+</div>
+<div *ngIf="suscriptores" style="margin-top: 40px;">
+    <hr>
+    <h2>Suscriptores totales</h2>
+    <div *ngFor="let suscriptor of suscriptores">
+        <p>{{suscriptor.id}} {{suscriptor.nombre}} {{suscriptor.apellido}} {{suscriptor.email}}</p>
+    </div>
+</div>
